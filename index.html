@@ -26,6 +26,9 @@
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
     <!-- Navbar Start -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
         <a href="index.html" class="navbar-brand d-block d-lg-none">
@@ -428,10 +431,13 @@
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzdtWrIm2Q5UKl2to05ILLbBtAYc7dKEwN0XXpgds5U91gr6QeH-ecX2iFE2uib7G7P/exec'; // Reemplaza con tu URL de Apps Script
         const form = document.getElementById('form');
+        const loadingOverlay = document.getElementById('loading-overlay');
     
         form.addEventListener('submit', e => {
           e.preventDefault();
     
+          loadingOverlay.style.display = 'flex'; 
+
           const formData = new FormData(form);
           const data = Object.fromEntries(formData.entries());
     
@@ -450,8 +456,10 @@
 .catch(error => {
     console.error('Error:', error);
     alert('Hubo un problema al enviar el formulario.');
-});
-        });
+}).finally(() => {
+        loadingOverlay.style.display = 'none'; // Oculta el loader al finalizar
+    });
+      });
       </script>
  
 </body>
