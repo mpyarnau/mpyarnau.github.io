@@ -9804,7 +9804,6 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-
 #loading-overlay {
   display: none; /* Ahora inicia oculto */
   position: fixed;
